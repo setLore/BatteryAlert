@@ -6,7 +6,9 @@ def sendNotification(content):
     subprocess.run(['notify-send', str(content)])
 
 while True:
-    if current_percentage > 99:
+    if current_percentage < 99:
+        pass
+    elif current_percentage >= 99:
         sendNotification(f"Battery is at {current_percentage}%, disconnect charger!")
         print('sent notification')
         time.sleep(150)

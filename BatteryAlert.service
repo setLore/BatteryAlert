@@ -1,0 +1,12 @@
+[Unit]
+Description=An app that notifies you when your charger should be disconnected.
+After=graphical-session.target
+
+[Service]
+Type=simple
+ExecStart=%h/.local/bin/BatteryAlert
+Restart=on-failure
+RestartSec=5
+
+[Install]
+WantedBy=default.target

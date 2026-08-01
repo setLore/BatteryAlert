@@ -6,7 +6,7 @@ SERVICE_DIR="$HOME/.config/systemd/user"
 BIN_NAME="BatteryAlert"
 
 if [ ! -f "./$BIN_NAME" ]; then
-    echo "[] compiled binary not found, attempting build..."
+    echo "compiled binary not found, attempting build..."
 
     if ! command -v pyinstaller &> /dev/null; then
         echo "pyinstaller not found, run \`pip install pyinstaller\`"
@@ -19,7 +19,7 @@ fi
 
 
 
-echo "[] installing BatteryAlert..."
+echo "installing BatteryAlert..."
 
 mkdir -p "$BIN_DIR"
 mkdir -p "$SERVICE_DIR"
@@ -31,3 +31,5 @@ cp "./BatteryAlert.service" "$SERVICE_DIR/BatteryAlert.service"
 
 systemctl --user daemon-reload
 systemctl --user enable --now BatteryAlert.service
+
+echo "successfully installed. hi.

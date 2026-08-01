@@ -1,2 +1,2 @@
 # BatteryAlert
-## Simple (Linux only) app that sends you a notification when you should disconnect your charger(>=99%).
+## Simple (Linux only) service that sends you a notification when you should disconnect your charger(>=99%).

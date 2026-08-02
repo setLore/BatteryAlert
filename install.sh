@@ -4,6 +4,7 @@ set -e
 BIN_DIR="$HOME/.local/bin"
 SERVICE_DIR="$HOME/.config/systemd/user"
 BIN_NAME="BatteryAlert"
+SERVICE_NAME="BatteryAlert.service"
 
 if [ ! -f "./$BIN_NAME" ]; then
     echo "compiled binary not found, attempting build..."
@@ -24,6 +25,12 @@ echo "installing BatteryAlert..."
 mkdir -p "$BIN_DIR"
 mkdir -p "$SERVICE_DIR"
 
+systemctl --user stop "$SERVICE_NAME" 2>/dev/null || true
+systemctl --user disable "$SERVICE_NAME" 2>/dev/null || true
+systemctl --user daemon-reload
+rm -f "$BIN_DIR/$BIN_NAME"
+rm -f "$SERVICE_DIR/$SERVICE_NAME"
+
 cp "./$BIN_NAME" "$BIN_DIR/$BIN_NAME"
 chmod +x "$BIN_DIR/$BIN_NAME"
 cp "./BatteryAlert.service" "$SERVICE_DIR/BatteryAlert.service"
@@ -33,3 +40,4 @@ systemctl --user daemon-reload
 systemctl --user enable --now BatteryAlert.service
 
 echo "successfully installed. hi."
+pkill BatteryAlert

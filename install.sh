@@ -32,4 +32,4 @@ cp "./BatteryAlert.service" "$SERVICE_DIR/BatteryAlert.service"
 systemctl --user daemon-reload
 systemctl --user enable --now BatteryAlert.service
 
-echo "successfully installed. hi.
+echo "successfully installed. hi."

@@ -16,3 +16,5 @@ rm -f "$SERVICE_DIR/$SERVICE_NAME"
 systemctl --user daemon-reload
 
 echo "succesfully uninstalled. bye."
+
+pkill BatteryAlert

@@ -7,11 +7,11 @@ while True:
     current_percentage = int(open('/sys/class/power_supply/BAT0/capacity').read())
     isCharging = open('/sys/class/power_supply/BAT0/status').read()
     if isCharging == "Charging\n": 
-        if current_percentage < 99:
+        if current_percentage < 95:
             print('percentage not high enough, passing.')
             time.sleep(5)
             pass
-        elif current_percentage >= 99:
+        elif current_percentage >= 95:
             sendNotification(f"Battery is at {current_percentage}%, disconnect charger!")
             print('sent notification')
             time.sleep(150)

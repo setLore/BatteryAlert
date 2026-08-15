@@ -1,13 +1,14 @@
 import subprocess,time
 
 def sendNotification(content):
-    subprocess.run(['notify-send', str(content)])
+    subprocess.run(['notify-send', '-e', 'BatteryAlert', str(content)])
 
 while True:
     current_percentage = int(open('/sys/class/power_supply/BAT0/capacity').read())
     isCharging = open('/sys/class/power_supply/BAT0/status').read()
     if isCharging == "Charging\n": 
         if current_percentage < 99:
+            print('percentage not high enough, passing.')
             time.sleep(5)
             pass
         elif current_percentage >= 99:
@@ -15,12 +16,14 @@ while True:
             print('sent notification')
             time.sleep(150)
         else:
-            print("3")
+            print("something's wrong")
             time.sleep(5)
             pass
     elif isCharging == "Not charging\n":
+        print("not charging, passing.")
+        time.sleep(5)
         pass
     else:
-        print("4")
+        print("not charging, passing.")
         time.sleep(5)
         pass
